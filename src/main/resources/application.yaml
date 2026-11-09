@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: ifs25024-pbo2026-springboot-cashflow
+  # Mode dev (dev.ps1) tetap hidup lewat env: DEV_MODE=true
+  devtools:
+    restart:
+      enabled: ${DEV_MODE:false}
+      poll-interval: 1s
+      quiet-period: 400ms
+    livereload:
+      enabled: ${DEV_MODE:false}
+  main:
+    banner-mode: "off"
+  jmx:
+    enabled: false
+
+server:
+  port: ${APP_PORT:8080}
+  http2:
+    enabled: true
+  # Kompresi teks (HTML/JS/CSS/JSON/SVG) agar payload kecil
+  compression:
+    enabled: true
+    min-response-size: 512
+    mime-types: text/html,text/css,text/plain,text/javascript,application/javascript,application/json,application/xml,image/svg+xml
+  tomcat:
+    threads:
+      min-spare: 10
+  forward-headers-strategy: framework
+
+vaadin:
+  launch-browser: false
+  liveReload:
+    enabled: ${DEV_MODE:false}
